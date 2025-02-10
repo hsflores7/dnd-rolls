@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Roll Distribution</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>Dice Roll Distribution Simulator</h1>
+
+    <!-- Advantage Mode Selection -->
+    <div class="toggle-container">
+        <div class="toggle-background"></div>
+        <button class="toggle-option" data-mode="0">Disadvantage</button>
+        <button class="toggle-option selected" data-mode="1">Normal</button>
+        <button class="toggle-option" data-mode="2">Advantage</button>
+    </div>
+
+    <br>
+
+    <label for="diceSides">Dice Sides (d):</label>
+    <input type="number" id="diceSides" value="20" min="2" max="100">
+
+    <label for="numDice">Number of Dice:</label>
+    <input type="number" id="numDice" value="1" min="1" max="20">
+
+    <label for="sims">Number of Simulations:</label>
+    <input type="number" id="numSims" value="1000000" min="1" max="1000000000">
+
+    <button id="runSimulation">Run Simulation</button>
+
+    <svg id="chart" width="800" height="500"></svg>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

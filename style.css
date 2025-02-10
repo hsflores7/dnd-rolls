@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 20px;
+}
+
+/* Toggle container to hold the buttons */
+.toggle-container {
+    display: flex;
+    position: relative;
+    background: #ddd;
+    border-radius: 50px;  /* Fully rounded */
+    width: 360px;  /* Controls overall size */
+    height: 50px;  /* Matches button height */
+    margin: 20px auto;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 5px; /* Padding ensures smooth alignment */
+}
+
+/* Background for the selected toggle */
+.toggle-background {
+    position: absolute;
+    height: calc(100% - 10px); /* Matches button height with padding */
+    background: #2979ff; /* Modern blue */
+    border-radius: 50px; /* Smooth rounded edges */
+    transition: transform 0.3s ease-in-out, width 0.3s ease-in-out;
+    z-index: 1;
+    top: 5px; /* Centers vertically */
+    left: 0; /* Prevents clipping */
+}
+
+/* Individual buttons */
+.toggle-option {
+    flex: 1;
+    padding: 0;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    transition: color 0.2s ease-in-out;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #444;
+}
+
+/* White text when selected */
+.toggle-option.selected {
+    color: white !important;
+}
+
+.toggle-option:hover {
+    background-color: #8bb8e7;
+    color: white;
+    height: 70%;
+}
+
+input, button {
+    margin: 10px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+button {
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
