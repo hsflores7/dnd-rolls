@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const width = 800, height = 500;
         const margin = { top: 30, right: 30, bottom: 50, left: 60 };
 
-        d3.select("#chart").selectAll("*").remove();
+        d3.select("#chart").selectAll("*").remove(); // Clear previous chart
 
         const svg = d3.select("#chart")
             .attr("width", width)
@@ -111,33 +111,42 @@ document.addEventListener("DOMContentLoaded", function () {
             .attr("transform", `translate(${margin.left},0)`)
             .call(d3.axisLeft(y));
 
-        // Draw bars
+        // Draw bars with animation
         svg.selectAll(".bar")
             .data(data)
             .enter().append("rect")
             .attr("class", "bar")
             .attr("x", d => x(d.value))
-            .attr("y", d => y(d.count))
-            .attr("height", d => height - margin.bottom - y(d.count))
+            .attr("y", height - margin.bottom)  // Start at bottom
+            .attr("height", 0)  // Start with no height
             .attr("width", x.bandwidth())
-            .attr("fill", "steelblue");
+            .attr("fill", "steelblue")
+            .transition()  // Animate the bars rising
+            .duration(1000)  // 1-second duration
+            // .ease(d3.easeBounceOut)  // Bouncy effect
+            .attr("y", d => y(d.count))
+            .attr("height", d => height - margin.bottom - y(d.count));
 
-        // Add percentage labels
+        // Add percentage labels with animation
         svg.selectAll(".label")
             .data(data)
             .enter().append("text")
             .attr("class", "label")
             .attr("x", d => x(d.value) + x.bandwidth() / 2)
-            .attr("y", d => {
-                const barHeight = height - margin.bottom - y(d.count);
-                return barHeight > 20 ? y(d.count) + 15 : y(d.count) - 5; // Inside if tall, above if short
-            })
+            .attr("y", height - margin.bottom)  // Start at bottom
             .attr("text-anchor", "middle")
             .attr("font-size", `${fontSize}px`)
             .attr("fill", d => {
                 const barHeight = height - margin.bottom - y(d.count);
                 return barHeight > 20 ? "white" : "black"; // White inside, black above
             })
-            .text(d => `${((d.count / totalCount) * 100).toFixed(1)}%`);
+            .text(d => `${((d.count / totalCount) * 100).toFixed(1)}%`)
+            .transition()  // Animate label movement
+            .duration(1000)  // 1-second duration
+            // .ease(d3.easeBounceOut)  // Same easing as bars
+            .attr("y", d => {
+                const barHeight = height - margin.bottom - y(d.count);
+                return barHeight > 20 ? y(d.count) + 15 : y(d.count) - 5; // Inside if tall, above if short
+            });
     }
 });
