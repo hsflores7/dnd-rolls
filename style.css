@@ -9,7 +9,7 @@ body {
 .toggle-container {
     display: flex;
     position: relative;
-    background: #ddd;
+    background: #d9d9d9;
     border-radius: 50px;  /* Fully rounded */
     width: 360px;  /* Controls overall size */
     height: 50px;  /* Matches button height */
@@ -49,18 +49,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #444;
-}
-
-/* White text when selected */
-.toggle-option.selected {
-    color: white !important;
-}
-
-.toggle-option:hover {
-    background-color: #8bb8e7;
-    color: white;
-    height: 70%;
+    color: #303030;
 }
 
 input, button {
@@ -78,6 +67,17 @@ button {
     border-radius: 5px;
 }
 
-button:hover {
+#runSimulation:hover {
     background-color: #0056b3;
+}
+
+/* White text when selected */
+.toggle-option.selected {
+    color: white !important;
+}
+
+.toggle-option:hover {
+    transition: color 0.2s ease-in-out;
+    color: rgb(37, 91, 207);
+    height: 70%;
 }

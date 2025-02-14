@@ -40,8 +40,32 @@ document.addEventListener("DOMContentLoaded", function () {
         const num = parseInt(document.getElementById("numDice").value);
         const sims = parseInt(document.getElementById("numSims").value);
 
-        if (isNaN(d) || isNaN(num) || isNaN(sims) || d < 2 || num < 1 || sims < 1 || sims > 1000000000) {
-            alert("Please enter valid numbers for dice sides and number of dice.");
+        const d_min = parseInt(document.getElementById("diceSides").min);
+        const d_max = parseInt(document.getElementById("diceSides").max);
+
+        const num_min = parseInt(document.getElementById("numDice").min);
+        const num_max = parseInt(document.getElementById("numDice").max);
+
+        const sim_min = parseInt(document.getElementById("numSims").min);
+        const sim_max = parseInt(document.getElementById("numSims").max);
+
+        if (isNaN(d) || isNaN(num) || isNaN(sims)) {
+            alert("Please enter a number for each value");
+            return;
+        }
+
+        if (d < d_min || d > d_max) {
+            alert("Please enter a valid sided dice");
+            return;
+        }
+
+        if (num < num_min || num > num_max) {
+            alert("Please enter a valid number of dice");
+            return;
+        }
+
+        if (sims < sim_min || sims > sim_max) {
+            alert("Please enter a valid number of Simulations");
             return;
         }
 
